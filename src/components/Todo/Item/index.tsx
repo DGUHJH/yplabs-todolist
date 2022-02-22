@@ -8,7 +8,7 @@ import * as Styled from './styled';
 type Props = {
   checked?: boolean;
   onCheckboxClick?: () => void;
-  onChange?: (e: any) => void;
+  onUpdateTodoItem?: (value: string) => void;
   onDeleteButtonClick?: () => void;
   content?: string;
 };
@@ -16,11 +16,12 @@ type Props = {
 const TodoItem: React.FC<Props> = ({
   checked = false,
   onCheckboxClick = () => {},
-  onChange = () => {},
+  onUpdateTodoItem = () => {},
   onDeleteButtonClick = () => {},
   content = '테스트 데이터',
 }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [value, setValue] = useState<string>(content);
 
   return (
     <Styled.Root>
@@ -29,9 +30,13 @@ const TodoItem: React.FC<Props> = ({
         {editMode ? (
           <Styled.ContentTextField
             autoFocus={true}
-            value={content}
-            onChange={onChange}
-            onBlur={() => setEditMode(false)}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onBlur={() => {
+              setEditMode(false);
+              setValue(content);
+            }}
+            onKeyPress={(e) => e.key === 'Enter' && onUpdateTodoItem(value)}
           />
         ) : (
           <CommonTypography fontFamily="NotoSansKR-Regular" fontSize={14}>

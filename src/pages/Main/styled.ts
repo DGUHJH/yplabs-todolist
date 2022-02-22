@@ -35,7 +35,25 @@ export const TodoListTitleContainer = styled.div`
 
 export const TodolistItemContainer = styled.div`
   width: 100%;
+  min-height: calc(300px - 110px);
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+`;
+
+export const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const InputTextField = styled.input`
+  width: 350px;
+  &&& {
+    font-family: NotoSansKR-Regular;
+    font-size: 14px;
+    line-height: 120%;
+    color: #111;
+  }
 `;
