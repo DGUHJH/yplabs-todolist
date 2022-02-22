@@ -52,3 +52,8 @@ export type CheckboxType = {
   checked: boolean;
   onClick?: () => void;
 } & MarginType;
+
+export type TodoType = {
+  id: number;
+  content: string;
+};
