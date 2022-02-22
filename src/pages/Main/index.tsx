@@ -41,7 +41,7 @@ const Main = () => {
       <Styled.TodoListContainer>
         <Styled.TodoListTitleContainer>
           <CommonTypography fontFamily="NotoSansKR-Bold" fontSize={18}>
-            yblabs-todolist
+            yplabs-todolist
           </CommonTypography>
         </Styled.TodoListTitleContainer>
         <Styled.TodolistItemContainer>
