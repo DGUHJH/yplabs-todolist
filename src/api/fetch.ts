@@ -26,7 +26,7 @@ export const createTodoItem = async (
 };
 
 type DeleteTodoItemRequestType = {
-  id: string;
+  id: number;
 };
 
 type DeleteTodoItemResponseType = any;
@@ -38,7 +38,7 @@ export const deleteTodoItem = async (
 };
 
 type UpdateTodoItemRequestType = {
-  id: string;
+  id: number;
   content: string;
 };
 
@@ -47,7 +47,7 @@ type UpdateTodoItemResponseType = any;
 export const updateTodoItem = async (
   data: UpdateTodoItemRequestType
 ): Promise<UpdateTodoItemResponseType> => {
-  return await hFetch(`${requestUrl}todo/${data.id}`, 'patch', {
+  return await hFetch(`${requestUrl}todo/${data.id}/`, 'patch', {
     content: data.content,
   });
 };
