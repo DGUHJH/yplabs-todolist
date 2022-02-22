@@ -7,7 +7,7 @@ export const Root = styled(Typography)<FontType>`
     font-family: ${(props) => props.fontFamily};
     font-size: ${(props) => props.fontSize}px;
     font-weight: ${(props) => props.fontWeight ?? 'inherit'};
-    color: ${(props) => props.color ?? '#000'};
+    color: ${(props) => props.color ?? '#111'};
     line-height: ${(props) => props.lineHeight ?? '120%'};
     display: flex;
     align-items: center;
