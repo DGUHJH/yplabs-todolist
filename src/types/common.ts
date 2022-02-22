@@ -47,3 +47,8 @@ export type DotType = {
   height?: number;
   background: string;
 } & MarginType;
+
+export type CheckboxType = {
+  checked: boolean;
+  onClick?: () => void;
+} & MarginType;
