@@ -1,6 +1,5 @@
 import { Add } from '@mui/icons-material';
 import { CircularProgress, IconButton } from '@mui/material';
-import { createTodoItem, deleteTodoItem, updateTodoItem } from 'api/fetch';
 import TodoItem from 'components/Todo/Item';
 import CommonTypography from 'components/Typography/Common';
 import { RootState } from 'features';
@@ -23,15 +22,15 @@ const Main = () => {
   };
 
   const onDeleteButtonClick = (id: number) => () => {
-    deleteTodoItem({ id }).then((res) => refreshTodoList());
+    dispatch(todoAction.deleteTodoItemLoad({ id }));
   };
 
   const onUpdateTodoItem = (id: number) => (content: string) => {
-    updateTodoItem({ id, content }).then((res) => refreshTodoList());
+    dispatch(todoAction.updateTodoItemLoad({ id, content }));
   };
 
   const onCreateTodoItem = (content: string) => () => {
-    createTodoItem({ content }).then((res) => refreshTodoList());
+    dispatch(todoAction.createTodoItemLoad({ content }));
   };
 
   return (
@@ -51,6 +50,7 @@ const Main = () => {
             <Styled.TodolistItemContainer>
               {store.todoList.map((todoItem) => (
                 <TodoItem
+                  id={todoItem.id}
                   content={todoItem.content}
                   onDeleteButtonClick={onDeleteButtonClick(todoItem.id)}
                   onUpdateTodoItem={onUpdateTodoItem(todoItem.id)}
@@ -60,11 +60,15 @@ const Main = () => {
             </Styled.TodolistItemContainer>
             <Styled.InputContainer>
               <Styled.InputTextField
+                autoFocus={true}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                onKeyPress={(e) =>
-                  e.key === 'Enter' && onCreateTodoItem(value)()
-                }
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    onCreateTodoItem(value)();
+                    setValue('');
+                  }
+                }}
               />
               <IconButton onClick={onCreateTodoItem(value)}>
                 <Add />
