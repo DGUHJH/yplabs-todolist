@@ -1,27 +1,27 @@
 import { Add } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import {
-  createTodoItem,
-  deleteTodoItem,
-  getTodoList,
-  updateTodoItem,
-} from 'api/fetch';
+import { createTodoItem, deleteTodoItem, updateTodoItem } from 'api/fetch';
 import TodoItem from 'components/Todo/Item';
 import CommonTypography from 'components/Typography/Common';
+import { RootState } from 'features';
+import { todoAction } from 'features/todo/slice';
 import { useEffect, useState } from 'react';
-import { TodoType } from 'types/common';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Styled from './styled';
 
 const Main = () => {
-  const [todoList, setTodoList] = useState<TodoType[]>([]);
+  const todoList = useSelector((state: RootState) => state.todoList);
+  const dispatch = useDispatch();
   const [value, setValue] = useState<string>('');
+
+  console.log(todoList);
 
   useEffect(() => {
     refreshTodoList();
   }, []);
 
   const refreshTodoList = () => {
-    getTodoList().then((res) => setTodoList(res));
+    dispatch(todoAction.refreshTodoListLoad());
   };
 
   const onDeleteButtonClick = (id: number) => () => {

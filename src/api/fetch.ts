@@ -1,13 +1,15 @@
-import { hFetch } from './methods/hFetch';
+import axios from 'axios';
 import { requestUrl } from './url';
 
-type GetTodoListResponseType = {
-  id: number;
-  content: string;
-}[];
+export type GetTodoListResponseType = {
+  data: {
+    id: number;
+    content: string;
+  }[];
+};
 
-export const getTodoList = async (): Promise<GetTodoListResponseType> => {
-  return await hFetch(`${requestUrl}todo/`, 'get');
+export const getTodoList = async () => {
+  return axios.get(`${requestUrl}todo/`);
 };
 
 type CreateTodoItemRequestType = {
@@ -15,14 +17,14 @@ type CreateTodoItemRequestType = {
 };
 
 type CreateTodoItemResponseType = {
-  id: 468;
-  content: string;
+  data: {
+    id: 468;
+    content: string;
+  };
 };
 
-export const createTodoItem = async (
-  data: CreateTodoItemRequestType
-): Promise<CreateTodoItemResponseType> => {
-  return await hFetch(`${requestUrl}todo/`, 'post', data);
+export const createTodoItem = async (data: CreateTodoItemRequestType) => {
+  return axios.post(`${requestUrl}todo/`, data);
 };
 
 type DeleteTodoItemRequestType = {
@@ -31,10 +33,8 @@ type DeleteTodoItemRequestType = {
 
 type DeleteTodoItemResponseType = any;
 
-export const deleteTodoItem = async (
-  data: DeleteTodoItemRequestType
-): Promise<DeleteTodoItemResponseType> => {
-  return await hFetch(`${requestUrl}todo/${data.id}`, 'delete');
+export const deleteTodoItem = async (data: DeleteTodoItemRequestType) => {
+  return axios.delete(`${requestUrl}todo/${data.id}`);
 };
 
 type UpdateTodoItemRequestType = {
@@ -44,10 +44,8 @@ type UpdateTodoItemRequestType = {
 
 type UpdateTodoItemResponseType = any;
 
-export const updateTodoItem = async (
-  data: UpdateTodoItemRequestType
-): Promise<UpdateTodoItemResponseType> => {
-  return await hFetch(`${requestUrl}todo/${data.id}/`, 'patch', {
+export const updateTodoItem = async (data: UpdateTodoItemRequestType) => {
+  return axios.patch(`${requestUrl}todo/${data.id}`, {
     content: data.content,
   });
 };
