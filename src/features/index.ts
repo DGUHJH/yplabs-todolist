@@ -1,12 +1,16 @@
 import { all } from '@redux-saga/core/effects';
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { watchGetTodoList } from './todo/saga';
+import {
+  watchCreateTodoList,
+  watchDeleteTodoList,
+  watchGetTodoList,
+} from './todo/saga';
 import todoSlice from './todo/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
-  yield all([watchGetTodoList()]);
+  yield all([watchGetTodoList(), watchDeleteTodoList(), watchCreateTodoList()]);
 }
 
 const store = configureStore({

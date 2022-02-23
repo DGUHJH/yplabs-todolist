@@ -12,21 +12,6 @@ export const getTodoList = async () => {
   return axios.get(`${requestUrl}todo/`);
 };
 
-type CreateTodoItemRequestType = {
-  content: string;
-};
-
-type CreateTodoItemResponseType = {
-  data: {
-    id: 468;
-    content: string;
-  };
-};
-
-export const createTodoItem = async (data: CreateTodoItemRequestType) => {
-  return axios.post(`${requestUrl}todo/`, data);
-};
-
 type DeleteTodoItemRequestType = {
   id: number;
 };
@@ -37,6 +22,20 @@ export const deleteTodoItem = async (data: DeleteTodoItemRequestType) => {
   return axios.delete(`${requestUrl}todo/${data.id}`);
 };
 
+type CreateTodoItemRequestType = {
+  content: string;
+};
+
+type CreateTodoItemResponseType = {
+  data: {
+    id: number;
+    content: string;
+  };
+};
+
+export const createTodoItem = async (data: CreateTodoItemRequestType) => {
+  return axios.post(`${requestUrl}todo/`, data);
+};
 type UpdateTodoItemRequestType = {
   id: number;
   content: string;
