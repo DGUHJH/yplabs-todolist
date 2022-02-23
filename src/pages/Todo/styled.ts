@@ -37,8 +37,11 @@ export const TodoItemContainer = styled.div`
   width: 100%;
   min-height: calc(300px - 110px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 6px;
+  margin: 20px 0;
 `;
 
 export const ButtonWrapper = styled.div`
