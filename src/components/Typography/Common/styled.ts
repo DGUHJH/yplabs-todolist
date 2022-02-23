@@ -21,6 +21,6 @@ export const Root = styled(Typography)<FontType>`
     -webkit-animation: ${(props) => props.animation ?? 'none'};
     -o-animation: ${(props) => props.animation ?? 'none'};
     word-break: keep-all;
-    cursor: ${(props) => (props.onClick ? `pointer` : `default`)};
+    cursor: ${(props) => (props.onClick ? `pointer` : `inherit`)};
   }
 `;
