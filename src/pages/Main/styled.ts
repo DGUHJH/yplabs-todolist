@@ -57,3 +57,11 @@ export const InputTextField = styled.input`
     color: #111;
   }
 `;
+
+export const ProgressContainer = styled.div`
+  width: 100%;
+  height: 245px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
