@@ -33,6 +33,21 @@ export const TodoListTitleContainer = styled.div`
   border-bottom: 1px #ccc solid;
 `;
 
+export const TodoItemContainer = styled.div`
+  width: 100%;
+  min-height: calc(300px - 110px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ProgressContainer = styled.div`
   width: 100%;
   height: 245px;
