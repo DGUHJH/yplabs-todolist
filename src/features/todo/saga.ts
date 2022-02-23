@@ -8,7 +8,7 @@ import {
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { todoAction } from './slice';
 
-function* handleGetTodoListLoad() {
+export function* handleGetTodoListLoad() {
   const { refreshTodoListFail, refreshTodoListSuccess } = todoAction;
   try {
     const todoList: GetTodoListResponseType = yield call(getTodoList);
@@ -23,7 +23,7 @@ export function* watchGetTodoList() {
   yield takeLatest(refreshTodoListLoad, handleGetTodoListLoad);
 }
 
-function* handleDeleteTodoListLoad(action: any) {
+export function* handleDeleteTodoListLoad(action: any) {
   const {
     refreshTodoListLoad,
     refreshTodoListFail,
@@ -51,7 +51,7 @@ export function* watchDeleteTodoList() {
   yield takeLatest(deleteTodoItemLoad, handleDeleteTodoListLoad);
 }
 
-function* handleCreateTodoListLoad(action: any) {
+export function* handleCreateTodoListLoad(action: any) {
   const {
     refreshTodoListLoad,
     refreshTodoListFail,
@@ -79,7 +79,7 @@ export function* watchCreateTodoList() {
   yield takeLatest(createTodoItemLoad, handleCreateTodoListLoad);
 }
 
-function* handleUpdateTodoListLoad(action: any) {
+export function* handleUpdateTodoListLoad(action: any) {
   const {
     refreshTodoListLoad,
     refreshTodoListFail,
