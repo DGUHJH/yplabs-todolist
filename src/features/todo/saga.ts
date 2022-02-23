@@ -23,11 +23,23 @@ export function* watchGetTodoList() {
 }
 
 function* handleDeleteTodoListLoad(action: any) {
-  const { deleteTodoItemFail, deleteTodoItemSuccess } = todoAction;
+  const {
+    refreshTodoListLoad,
+    refreshTodoListFail,
+    refreshTodoListSuccess,
+    deleteTodoItemFail,
+    deleteTodoItemSuccess,
+  } = todoAction;
   try {
     yield call(() => deleteTodoItem({ id: action.payload.id }));
     yield put(deleteTodoItemSuccess());
-    yield handleGetTodoListLoad();
+    try {
+      yield put(refreshTodoListLoad());
+      const todoList: GetTodoListResponseType = yield call(getTodoList);
+      yield put(refreshTodoListSuccess(todoList.data));
+    } catch (err) {
+      yield put(refreshTodoListFail());
+    }
   } catch (err) {
     yield put(deleteTodoItemFail());
   }
@@ -39,10 +51,23 @@ export function* watchDeleteTodoList() {
 }
 
 function* handleCreateTodoListLoad(action: any) {
-  const { createTodoItemSuccess, createTodoItemFail } = todoAction;
+  const {
+    refreshTodoListLoad,
+    refreshTodoListFail,
+    refreshTodoListSuccess,
+    createTodoItemSuccess,
+    createTodoItemFail,
+  } = todoAction;
   try {
     yield call(() => createTodoItem({ content: action.payload.content }));
     yield put(createTodoItemSuccess());
+    try {
+      yield put(refreshTodoListLoad());
+      const todoList: GetTodoListResponseType = yield call(getTodoList);
+      yield put(refreshTodoListSuccess(todoList.data));
+    } catch (err) {
+      yield put(refreshTodoListFail());
+    }
   } catch (err) {
     yield put(createTodoItemFail());
   }
