@@ -3,6 +3,7 @@ import {
   deleteTodoItem,
   getTodoList,
   GetTodoListResponseType,
+  updateTodoItem,
 } from 'api/fetch';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { todoAction } from './slice';
@@ -76,4 +77,34 @@ function* handleCreateTodoListLoad(action: any) {
 export function* watchCreateTodoList() {
   const { createTodoItemLoad } = todoAction;
   yield takeLatest(createTodoItemLoad, handleCreateTodoListLoad);
+}
+
+function* handleUpdateTodoListLoad(action: any) {
+  const {
+    refreshTodoListLoad,
+    refreshTodoListFail,
+    refreshTodoListSuccess,
+    updateTodoItemSuccess,
+    updateTodoItemFail,
+  } = todoAction;
+  try {
+    yield call(() =>
+      updateTodoItem({ id: action.payload.id, content: action.payload.content })
+    );
+    yield put(updateTodoItemSuccess());
+    try {
+      yield put(refreshTodoListLoad());
+      const todoList: GetTodoListResponseType = yield call(getTodoList);
+      yield put(refreshTodoListSuccess(todoList.data));
+    } catch (err) {
+      yield put(refreshTodoListFail());
+    }
+  } catch (err) {
+    yield put(updateTodoItemFail());
+  }
+}
+
+export function* watchUpdateTodoList() {
+  const { updateTodoItemLoad } = todoAction;
+  yield takeLatest(updateTodoItemLoad, handleUpdateTodoListLoad);
 }

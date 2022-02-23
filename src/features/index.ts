@@ -5,12 +5,18 @@ import {
   watchCreateTodoList,
   watchDeleteTodoList,
   watchGetTodoList,
+  watchUpdateTodoList,
 } from './todo/saga';
 import todoSlice from './todo/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
-  yield all([watchGetTodoList(), watchDeleteTodoList(), watchCreateTodoList()]);
+  yield all([
+    watchGetTodoList(),
+    watchDeleteTodoList(),
+    watchCreateTodoList(),
+    watchUpdateTodoList(),
+  ]);
 }
 
 const store = configureStore({
