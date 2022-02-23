@@ -9,6 +9,7 @@ export const Root = styled(Typography)<FontType>`
     font-weight: ${(props) => props.fontWeight ?? 'inherit'};
     color: ${(props) => props.color ?? '#111'};
     line-height: ${(props) => props.lineHeight ?? '120%'};
+    text-decoration: ${(props) => props.textDecoration ?? 'none'};
     display: flex;
     align-items: center;
     margin-top: ${(props) => props.marginTop ?? 0}px;

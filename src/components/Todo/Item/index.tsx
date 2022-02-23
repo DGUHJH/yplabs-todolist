@@ -6,7 +6,7 @@ import { useState } from 'react';
 import * as Styled from './styled';
 
 type Props = {
-  checked?: boolean;
+  id: number;
   onCheckboxClick?: () => void;
   onUpdateTodoItem?: (value: string) => void;
   onDeleteButtonClick?: () => void;
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const TodoItem: React.FC<Props> = ({
-  checked = false,
+  id,
   onCheckboxClick = () => {},
   onUpdateTodoItem = () => {},
   onDeleteButtonClick = () => {},
@@ -22,11 +22,15 @@ const TodoItem: React.FC<Props> = ({
 }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [value, setValue] = useState<string>(content);
+  const [checked, setChecked] = useState<boolean>(false);
 
   return (
     <Styled.Root>
       <Styled.ContentContainer onClick={onCheckboxClick}>
-        <CommonCheckbox checked={checked} />
+        <CommonCheckbox
+          checked={checked}
+          onClick={() => setChecked((prev) => !prev)}
+        />
         {editMode ? (
           <Styled.ContentTextField
             autoFocus={true}
@@ -39,15 +43,23 @@ const TodoItem: React.FC<Props> = ({
             onKeyPress={(e) => e.key === 'Enter' && onUpdateTodoItem(value)}
           />
         ) : (
-          <CommonTypography fontFamily="NotoSansKR-Regular" fontSize={14}>
+          <CommonTypography
+            fontFamily="NotoSansKR-Regular"
+            color={checked ? '#999' : '#111'}
+            textDecoration={checked ? 'line-through' : 'none'}
+            fontSize={14}
+            onClick={() => (window.location.href = `/todo/${id}`)}
+          >
             {content}
           </CommonTypography>
         )}
       </Styled.ContentContainer>
       <Styled.MenuContainer>
-        <IconButton onClick={() => setEditMode((prev) => !prev)}>
-          <Edit />
-        </IconButton>
+        {!checked && (
+          <IconButton onClick={() => setEditMode((prev) => !prev)}>
+            <Edit />
+          </IconButton>
+        )}
         <IconButton onClick={onDeleteButtonClick}>
           <Close />
         </IconButton>

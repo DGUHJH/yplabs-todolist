@@ -26,5 +26,6 @@ export const ContentTextField = styled.input`
 
 export const MenuContainer = styled.div`
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
 `;

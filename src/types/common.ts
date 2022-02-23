@@ -26,6 +26,7 @@ export type FontType = {
   lineHeight?: string;
   onClick?: () => void;
   animation?: string;
+  textDecoration?: string;
 } & MarginType;
 
 export type ImageType = {
