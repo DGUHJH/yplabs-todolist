@@ -58,3 +58,5 @@ export type TodoType = {
   id: number;
   content: string;
 };
+
+export type RequestType = 'post' | 'get' | 'patch' | 'delete';

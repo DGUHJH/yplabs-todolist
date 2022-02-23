@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { requestUrl } from './url';
+import { hAxios } from './method';
 
 export type GetTodoListResponseType = {
   data: {
@@ -9,7 +8,7 @@ export type GetTodoListResponseType = {
 };
 
 export const getTodoList = async () => {
-  return axios.get(`${requestUrl}todo/`);
+  return hAxios(`todo/`, 'get');
 };
 
 type DeleteTodoItemRequestType = {
@@ -19,7 +18,7 @@ type DeleteTodoItemRequestType = {
 type DeleteTodoItemResponseType = any;
 
 export const deleteTodoItem = async (data: DeleteTodoItemRequestType) => {
-  return axios.delete(`${requestUrl}todo/${data.id}`);
+  return hAxios(`todo/${data.id}`, 'delete');
 };
 
 type CreateTodoItemRequestType = {
@@ -34,7 +33,7 @@ type CreateTodoItemResponseType = {
 };
 
 export const createTodoItem = async (data: CreateTodoItemRequestType) => {
-  return axios.post(`${requestUrl}todo/`, data);
+  return hAxios(`todo/`, 'post', data);
 };
 
 type UpdateTodoItemRequestType = {
@@ -45,7 +44,7 @@ type UpdateTodoItemRequestType = {
 type UpdateTodoItemResponseType = any;
 
 export const updateTodoItem = async (data: UpdateTodoItemRequestType) => {
-  return axios.patch(`${requestUrl}todo/${data.id}/`, {
+  return hAxios(`todo/${data.id}/`, 'patch', {
     content: data.content,
   });
 };
