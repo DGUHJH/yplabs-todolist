@@ -33,6 +33,11 @@ const Main = () => {
     dispatch(todoAction.createTodoItemLoad({ content }));
   };
 
+  const onAddButtonClick = () => {
+    onCreateTodoItem(value)();
+    setValue('');
+  };
+
   return (
     <Styled.Root>
       <Styled.TodoListContainer>
@@ -65,12 +70,11 @@ const Main = () => {
                 onChange={(e) => setValue(e.target.value)}
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
-                    onCreateTodoItem(value)();
-                    setValue('');
+                    onAddButtonClick();
                   }
                 }}
               />
-              <IconButton onClick={onCreateTodoItem(value)}>
+              <IconButton onClick={onAddButtonClick}>
                 <Add />
               </IconButton>
             </Styled.InputContainer>
