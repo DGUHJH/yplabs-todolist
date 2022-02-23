@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# yblabs-todolist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 개발 스택
 
-## Available Scripts
+- React(CRA)
+- Redux-Toolkit, saga
+- Typescript
+- Styled-components
+- yarn
 
-In the project directory, you can run:
+## 설치
 
-### `npm start`
+```
+$ git clone https://github.com/DGUHJH/yplabs-todolist.git
+$ yarn install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 로컬 환경 실행
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+$ yarn start
+```
 
-### `npm test`
+## 테스트
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ yarn test
+```
 
-### `npm run build`
+## 배포
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://yplabs-todolist.netlify.app/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- CORS 이슈로 크롬 보안 해제 후 접속
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+```
 
-### `npm run eject`
+## 구현해야 하는 기능
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ~~Todo item 작성 하기 (작성 하는 화면 또는 모달로 구현)~~
+- ~~Todo item 삭제 하기~~
+- ~~Todo item 수정 하기 (작성 하는 화면 또는 모달 에서 수정 할수 있도록)~~
+- ~~Todo item 을 토글 방식으로 완성 또는 완성 취소 를 할수 있어야 하고 완성된 todo 는 수정할 수 없어야합니다.~~
+- ~~Todo item 클릭시 상세 보기 페이지로 넘어가야합니다~~
+- ~~Todo item 의 내용이 5중 이상 넘어갈시 ... 표시 처리가 되어야합니다.~~
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 구현시 사용 할 기술 스택
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ~~Typescript 기반의 React~~
+- ~~Yarn 사용~~
+  - Yarn 사용을 인지하기 전까지 npm 사용, 문서 참고 후 yarn 사용
+- ~~React-router-domV6 패키지를 사용하여 페이지 네비게이션 구현을 합니다.~~
+- ~~Redux Toolkit 또는 Redux 를 사용해서 상태 관리를 합니다.~~
+- ~~Redux Saga 를 Redux Toolkit 또는 Redux 랑 연동하여 side-effect 들을 처리해줍니다.~~
+- Jest 를 사용 해서 saga function 에 대한 test code 작성 합니다.
+  - web request 이슈로 샘플만 제작
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 개발 이슈 사항
 
-## Learn More
+- web Request 이슈로 Jest 환경을 전부 구축하지 못했습니다. 샘플 코드만 작성한 상태입니다.
+- 개발 상의 이슈는 존재하지 않았습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 유의하면서 보면 좋은 부분들
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- naming convention
+  - 최대한 직관적인 네이밍을 하였습니다.
+- git convention
+  - 일반적으로 사용되는 방식으로 branch를 관리하였습니다.
+  - commit message는 최대한 직관적으로, commit tag는 최대한 알맞게 사용하였습니다.
+- css convention
+  - flex pattern을 지키면서 레이아웃을 구성하였습니다.
+  - css order을 지켰습니다.
+  - Styled-components의 장점을 최대한 활용하여 컴포넌트를 구성하였습니다.
+- api
+  - axios의 중복되는 부분을 한번 랩핑하여 사용했습니다.
+- components
+  - 기본적인 컴포넌트는 한번 랩핑하여 사용하였습니다.
+  - 소스가 많지 않은 간단한 프로젝트여서 해당 프로젝트에서 눈에 띄는 부분은 아니지만, 공통 분모를 최대한 묶어 중복되지 네이밍이 않게끔 개발하였습니다.
+- features
+  - redux 패턴을 지키며 action을 제작하였으며 네이밍 또한 직관적으로 제작하였습니다.
+  - 비동기 처리를 하여 최대한 사이드 이펙트가 일어나지 않도록 하였습니다.
+- folder structure
+  - 2021 best folder structure를 참고하여 보편적으로 사용되는 구조를 차용했습니다.
+- 사용성
+  - 일반적으로 유저가 편리하게 사용할 수 있게끔 레이아웃을 구성했습니다.
 
-### Code Splitting
+## 보여드리지 못해서 아쉬운 부분들
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- custom hook 생성 규칙 및 사용 방식
+- component를 나누는 규칙
+- 디자인 시안과 동일한 레이아웃
+- 기타 등등
 
-### Analyzing the Bundle Size
+## 배포시 수정 사항 (인지하고 있는 부분)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- px로 설정된 css 속성 값들을 rem으로 변경
+- 레이아웃 반응형
 
-### Making a Progressive Web App
+## 기타
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 지금까지 다듬어진 코드 스타일을 볼 수 있는 좋은 기회였습니다.
+- 다른 사람의 도움을 받지 않고 혼자 개발한 소스입니다.
