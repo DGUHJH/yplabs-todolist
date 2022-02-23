@@ -36,6 +36,7 @@ type CreateTodoItemResponseType = {
 export const createTodoItem = async (data: CreateTodoItemRequestType) => {
   return axios.post(`${requestUrl}todo/`, data);
 };
+
 type UpdateTodoItemRequestType = {
   id: number;
   content: string;
@@ -44,7 +45,7 @@ type UpdateTodoItemRequestType = {
 type UpdateTodoItemResponseType = any;
 
 export const updateTodoItem = async (data: UpdateTodoItemRequestType) => {
-  return axios.patch(`${requestUrl}todo/${data.id}`, {
+  return axios.patch(`${requestUrl}todo/${data.id}/`, {
     content: data.content,
   });
 };
